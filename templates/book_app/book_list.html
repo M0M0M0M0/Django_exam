@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}All Books{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>All Books</h1>
+    <p class="meta">
+        Total: <span class="badge badge-info">{{ total }}</span>
+        &nbsp;<a href="/book_app/add/" class="btn btn-primary">+ Add Book</a>
+        &nbsp;<a href="/book_app/expensive/" class="btn btn-secondary">Price > 100</a>
+    </p>
+    {% if books %}
+    <table>
+        <thead><tr><th>#</th><th>Title</th><th>Author</th><th>Price</th><th>Added</th></tr></thead>
+        <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><strong>{{ book.title }}</strong></td>
+            <td>{{ book.author }}</td>
+            <td>${{ book.price }}</td>
+            <td>{{ book.created_at|date:"M d, Y" }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="empty">No books yet. <a href="/book_app/add/">Add one!</a></p>
+    {% endif %}
+</div>
+{% endblock %}

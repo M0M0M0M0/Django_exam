@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Add Book{% endblock %}
+{% block content %}
+<div class="card" style="max-width:500px;">
+    <h1>➕ Add New Book</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            <label>{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}<p style="color:red;font-size:0.82rem;">{{ field.errors.0 }}</p>{% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="/book_app/" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

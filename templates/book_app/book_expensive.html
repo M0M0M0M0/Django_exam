@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Books Over $100{% endblock %}
+{% block content %}
+<div class="card">
+    <h1>Books with Price > $100</h1>
+    <p class="meta">Found: <span class="badge badge-info">{{ books|length }}</span>
+        &nbsp;<a href="/book_app/" class="btn btn-secondary">← Back</a></p>
+    {% if books %}
+    <table>
+        <thead>
+            <tr><th>#</th><th>Title</th><th>Author</th><th>Price</th></tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><strong>{{ book.title }}</strong></td>
+            <td>{{ book.author }}</td>
+            <td style="color:#27ae60;font-weight:700;">${{ book.price }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="empty">No books over $100.</p>
+    {% endif %}
+</div>
+{% endblock %}
